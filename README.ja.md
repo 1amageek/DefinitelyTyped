@@ -122,7 +122,7 @@ declare module "libname" {
 
 DefinitelyTyped への大量の PR を全てセルフサービス方式で処理するために bot を導入しています。詳しい方法と理由については[こちら](https://devblogs.microsoft.com/typescript/changes-to-how-we-manage-definitelytyped/)<small>（英語）</small>で確認できます。下図は DefinitelyTyped への PR のライフサイクルを簡単に示したものです。
 
-<img src="https://github.com/DefinitelyTyped/dt-mergebot/blob/master/docs/dt-mergebot-lifecycle.svg">
+<img src="https://github.com/microsoft/DefinitelyTyped-tools/tree/main/packages/mergebot/docs/dt-mergebot-lifecycle.svg">
 
 #### 部分的なクローン
 
@@ -378,7 +378,7 @@ DefinitelyTypedのパッケージパブリッシャーは、Definitely Typedの�
 DT には「定義オーナー」というコンセプトがあり、特定のモジュールの型の品質を維持したいと考える人々がいます。
 
 - 自分自身をリストに追加すると、誰かがそのパッケージに関するプルリクエストまたは問題を作成したときに通知を受けることができます（GitHub ユーザー名を介して）。
-- あなたのプルリクエストのレビューは、[このリポジトリを管理するボット](https://github.com/DefinitelyTyped/dt-mergebot)にとって重要度が高くなります。
+- あなたのプルリクエストのレビューは、[このリポジトリを管理するボット](https://github.com/microsoft/DefinitelyTyped-tools/tree/main/packages/mergebot)にとって重要度が高くなります。
 - DT メンテナーは、安定したエコシステムを確保するために、定義オーナーに信頼を置いていますので、軽率に自分を追加しないでください。
 
 自分自身を定義オーナーとして追加するには：
@@ -412,7 +412,7 @@ Definitely TypedはGitHubで最もアクティブなリポジトリの1つです
 
 > モジュールの型定義のみの変更で、対応するテストもきちんと変更されている PR は早くマージされる
 
-通例、型定義ファイルのヘッダーに載っている著者が承認した PR はより早くマージされます。新しい型定義の PR は、 DefinitelyTyped のメンテナーからのレビューも必要になるので時間がかかります。各 PR は TypeScript や DefinitelyTyped のチームメンバーがマージ前にレビューします。人為的要因で遅れが発生する場合があるので、しばらくお待ちください。メンテナーがオープンな PR を処理している間は、 [New Pull Request Status Board](https://github.com/DefinitelyTyped/DefinitelyTyped/projects/5) で進捗を確認できます。
+通例、型定義ファイルのヘッダーに載っている著者が承認した PR はより早くマージされます。新しい型定義の PR は、 DefinitelyTyped のメンテナーからのレビューも必要になるので時間がかかります。各 PR は TypeScript や DefinitelyTyped のチームメンバーがマージ前にレビューします。人為的要因で遅れが発生する場合があるので、しばらくお待ちください。メンテナーがオープンな PR を処理している間は、 [Pull Request Status Board](https://github.com/orgs/DefinitelyTyped/projects/1) で進捗を確認できます。
 
 #### 非常に人気のあるプロジェクトへの変更を提出したい場合、なぜ異なる扱いを受けるのですか？
 

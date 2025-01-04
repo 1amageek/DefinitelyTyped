@@ -141,6 +141,11 @@ brickBuilder.create("statusScreen", "containerStatusScreen", {
     initialization: {
         paymentId: 123456789,
     },
+    customization: {
+        visual: {
+            hidePixQrCode: true,
+        },
+    },
     callbacks: {},
 });
 
@@ -152,7 +157,8 @@ brickBuilder.create("wallet", "containerWallet", {
     customization: {
         texts: {
             action: "pay",
-            valueProp: "smart_option",
+            actionComplement: "brand",
+            valueProp: "payment_methods_logos",
         },
     },
     callbacks: {

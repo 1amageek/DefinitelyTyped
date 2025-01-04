@@ -1,5 +1,6 @@
 /// <reference types="node" />
 
+import { MediaInformation, MediaStatus } from "chromecast-caf-receiver/cast.framework.messages";
 import { EventEmitter } from "node:events";
 
 // To start a new client.
@@ -60,10 +61,10 @@ export interface ApplicationInfo {
 }
 
 export interface VolumeInfo {
-    controlType: string;
+    controlType?: string;
     level: number;
     muted: boolean;
-    stepInterval: number;
+    stepInterval?: number;
 }
 
 // A status message from the receiver.
@@ -82,11 +83,17 @@ export interface ReceiverStatusMessage extends ReceiverMessage {
 export interface ReceiverLaunchErrorMessage extends ReceiverMessage {
     type: "LAUNCH_ERROR";
     reason: string;
+    extendedError: string;
 }
 
 export interface ReceiverLaunchStatusMessage extends ReceiverMessage {
     type: "LAUNCH_STATUS";
     status: "USER_PENDING_AUTHORIZATION" | "USER_ALLOWED";
+}
+
+export interface MediaStatusMessage extends ReceiverMessage {
+    type: "MEDIA_STATUS";
+    status: MediaStatus[];
 }
 
 export type MessageHandler = (data: ReceiverMessage, broadcast: boolean) => void;
@@ -105,6 +112,7 @@ export interface Channel extends EventEmitter {
     close(): void;
 
     on(eventName: "message", callback: MessageHandler): this;
+    on(eventName: "close", callback: () => void): this;
 }
 
 export class Client extends EventEmitter {
@@ -114,5 +122,11 @@ export class Client extends EventEmitter {
 
     createChannel(sourceId: string, destinationId: string, namespace: string, encoding: string): Channel;
 
+    on(
+        eventName: "message",
+        callback: (sourceId: string, destinationId: string, namespace: string, message: string) => void,
+    ): this;
+    on(eventName: "connect", callback: () => void): this;
     on(eventName: "error", callback: ErrorHandler): this;
+    on(eventName: "close", callback: () => void): this;
 }

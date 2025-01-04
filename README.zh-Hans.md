@@ -137,7 +137,7 @@ declare module "libname" {
 
 我们使用机器人来确保能像自助服务一样处理提交至 Definitely Typed 的大量拉取请求。欲知详情，请阅读[此处](https://devblogs.microsoft.com/typescript/changes-to-how-we-manage-definitelytyped/)。下图简要展示了拉取请求的生命周期：
 
-<img src="https://github.com/DefinitelyTyped/dt-mergebot/blob/master/docs/dt-mergebot-lifecycle.svg">
+<img src="https://github.com/microsoft/DefinitelyTyped-tools/tree/main/packages/mergebot/docs/dt-mergebot-lifecycle.svg">
 
 #### 部分克隆
 
@@ -419,7 +419,7 @@ const enum Enum { // eslint-disable-line no-const-enum
 Definitely Typed 有“类型定义所有者”的概念——即愿意维护特定模块类型声明的人。
 
 - 如果你将自己添加到了列表中，当他人发起关于此软件包的 PR 或 issue 时，你将会收到通知（通过你的 GitHub 用户名）。
-- 对于维护本仓库的[机器人](https://github.com/DefinitelyTyped/dt-mergebot)而言，你的 PR 审核将会具有更高优先级以及重要性。
+- 对于维护本仓库的[机器人](https://github.com/microsoft/DefinitelyTyped-tools/tree/main/packages/mergebot)而言，你的 PR 审核将会具有更高优先级以及重要性。
 - 为维护稳定的社区环境，DT 维护者对类型定义所有者给予了较高的信任，因此将你自己添加为所有者时，请三思而后行。
 
 若要将你自己添加为类型定义所有者，编辑 `package.json` 中的 `owners` 数组：
@@ -457,7 +457,7 @@ Definitely Typed 是 GitHub 上最活跃的软件源之一。你可能想知道�
 
 > 如果 PR 仅仅更改了模块中的类型，并且包含了相应的测试，合并过程会大大加快。
 
-被类型定义所有者（在定义文件的标头列明）批准的 PR 通常合并得更快；提交新类型定义的 PR 需要更多时间，因为它们需要维护人员花更多的时间审核。每一个 PR 在合并之前都会由 TypeScript 或 Definitely Typed 的团队成员进行审核，所以请耐心等待，因为人为因素可能导致延迟。通过查看 [新拉取请求状态板](https://github.com/DefinitelyTyped/DefinitelyTyped/projects/5)，可以看到维护人员在开启的 PR 上的工作进度。
+被类型定义所有者（在定义文件的标头列明）批准的 PR 通常合并得更快；提交新类型定义的 PR 需要更多时间，因为它们需要维护人员花更多的时间审核。每一个 PR 在合并之前都会由 TypeScript 或 Definitely Typed 的团队成员进行审核，所以请耐心等待，因为人为因素可能导致延迟。通过查看 [新拉取请求状态板](https://github.com/orgs/DefinitelyTyped/projects/1)，可以看到维护人员在开启的 PR 上的工作进度。
 
 #### 我想给流行项目提交更改，为什么它们受到了特殊对待？
 

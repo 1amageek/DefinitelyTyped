@@ -127,7 +127,7 @@ Tout d'abord, [fork](https://guides.github.com/activities/forking/) ce dépôt, 
 
 Nous utilisons un robot pour permettre à un grand nombre de pull requests vers DefinitelyTyped d'être traitées entièrement en libre-service. Vous pouvez en savoir plus sur [pourquoi et comment ici](https://devblogs.microsoft.com/typescript/changes-to-how-we-manage-definitelytyped/). Voici une référence pratique montrant le cycle de vie de pull request à DT :
 
-<img src="https://github.com/DefinitelyTyped/dt-mergebot/blob/master/docs/dt-mergebot-lifecycle.svg">
+<img src="https://github.com/microsoft/DefinitelyTyped-tools/tree/main/packages/mergebot/docs/dt-mergebot-lifecycle.svg">
 
 #### Partial clone
 
@@ -380,24 +380,30 @@ Si un fichier n'est ni testé ni référencé dans `index.d.ts`, ajoutez-le à u
 
 ### Définition des propriétaires
 
-> TL;DR : ne pas modifier `.github/CODEOWNERS`, toujours modifier la liste des propriétaires dans l'en-tête `index.d.ts`.
+> TL;DR : ne pas modifier `.github/CODEOWNERS`, toujours modifier la liste des propriétaires dans `package.json`.
 
 DT a le concept de "propriétaires de définition" qui sont des personnes qui veulent maintenir la qualité des types d'un module particulier.
 
-- En vous ajoutant à la liste, vous serez notifié (via votre nom d'utilisateur GitHub) chaque fois que quelqu'un fera une pull request ou posera un problème concernant le paquet.
-- Vos évaluations de PR auront une plus grande importance pour [le bot](https://github.com/DefinitelyTyped/dt-mergebot) qui maintient ce repo.
+- En vous ajoutant à la liste, vous serez notifié (via votre nom d'utilisateur GitHub) chaque fois que quelqu'un fera une pull request ou une issue concernant le paquet.
+- Vos reviews de PR auront une plus grande importance pour [le bot](https://github.com/microsoft/DefinitelyTyped-tools/tree/main/packages/mergebot) qui maintient ce repo.
 - Les mainteneurs de DT font confiance aux propriétaires des définitions pour assurer un écosystème stable, ne vous ajoutez pas à la légère.
 
-Pour vous ajouter en tant que titulaire d'une définition :
+Pour vous ajouter en tant que propriétaire d'une définition, modifiez le tableau `owners` dans `package.json` :
 
-- Ajouter votre nom à la fin de la ligne, comme dans l'exemple suivant `// Definitions by: Alice <https://github.com/alice>, Bob <https://github.com/bob>`.
-- Ou, s'il y a plus de personnes, il peut être multiligne
-  ```typescript
-  // Definitions by: Alice <https://github.com/alice>
-  //                 Bob <https://github.com/bob>
-  //                 Steve <https://github.com/steve>
-  //                 John <https://github.com/john>
-  ```
+```json
+"owners": [
+    {
+        "name": "Some Person",
+        "githubUsername": "somebody"
+    },
+    {
+        "name": "Some Corp",
+        "url": "https://example.org"
+    }
+]
+```
+
+Notez que cette liste n'est _pas_ utilisée pour créditer les contributions; il n'est utilisé que pour gérer les reviews des PR.
 
 Une fois par semaine, les propriétaires de définitions sont synchronisés avec le fichier [.github/CODEOWNERS](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/.github/CODEOWNERS) qui est notre source de vérité.
 
@@ -419,7 +425,7 @@ En gros :
 
 > Les PRs qui ne modifient que les types d'un module, et qui ont des changements de tests correspondants seront fusionnés beaucoup plus rapidement.
 
-Les PRs qui ont été approuvés par un auteur listé dans l'en-tête de la définition sont généralement fusionnés plus rapidement ; les PRs pour de nouvelles définitions prendront plus de temps car ils nécessitent plus de révision de la part des mainteneurs. Chaque PR est révisé par un membre de l'équipe TypeScript ou Definitely Typed avant d'être fusionné, donc soyez patient car des facteurs humains peuvent causer des retards. Consultez le [New Pull Request Status Board](https://github.com/DefinitelyTyped/DefinitelyTyped/projects/5) pour voir les progrès réalisés par les mainteneurs sur les PRs ouverts.
+Les PRs qui ont été approuvés par un auteur listé dans l'en-tête de la définition sont généralement fusionnés plus rapidement ; les PRs pour de nouvelles définitions prendront plus de temps car ils nécessitent plus de révision de la part des mainteneurs. Chaque PR est révisé par un membre de l'équipe TypeScript ou Definitely Typed avant d'être fusionné, donc soyez patient car des facteurs humains peuvent causer des retards. Consultez le [Pull Request Status Board](https://github.com/orgs/DefinitelyTyped/projects/1) pour voir les progrès réalisés par les mainteneurs sur les PRs ouverts.
 
 #### J'aimerais apporter une modification à un projet très populaire, pourquoi sont-ils traités différemment ?
 

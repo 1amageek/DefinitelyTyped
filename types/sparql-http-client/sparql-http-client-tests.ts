@@ -1,9 +1,10 @@
 import { Environment } from "@rdfjs/environment/Environment.js";
 import { DataFactory, DatasetCore, DatasetCoreFactory, Quad, Quad_Graph, Stream, Term } from "@rdfjs/types";
 import StreamClient from "sparql-http-client";
-import ParsingClient from "sparql-http-client/ParsingClient.js";
+import ParsingClient, { ParsingClient as IParsingClient } from "sparql-http-client/ParsingClient.js";
 import RawQuery from "sparql-http-client/RawQuery.js";
-import SimpleClient from "sparql-http-client/SimpleClient.js";
+import SimpleClient, { SimpleClient as ISimpleClient } from "sparql-http-client/SimpleClient.js";
+import { StreamClient as IStreamClient } from "sparql-http-client/StreamClient.js";
 import StreamStore from "sparql-http-client/StreamStore.js";
 import { Readable } from "stream";
 
@@ -24,19 +25,22 @@ const stream: Stream = <any> {};
 
 async function streamingClient() {
     // construct
-    const minimalOptions: StreamClient = new StreamClient({
+    const usingDefaultFactory: IStreamClient = new StreamClient({
+        endpointUrl,
+    });
+    const minimalOptions: IStreamClient = new StreamClient({
         endpointUrl,
         factory,
     });
-    const storeOnly: StreamClient = new StreamClient({
+    const storeOnly: IStreamClient = new StreamClient({
         storeUrl: endpointUrl,
         factory,
     });
-    const updateOnly: StreamClient = new StreamClient({
+    const updateOnly: IStreamClient = new StreamClient({
         updateUrl: endpointUrl,
         factory,
     });
-    const fullOptions: StreamClient<TestQuad> = new StreamClient({
+    const fullOptions: IStreamClient<TestQuad> = new StreamClient({
         endpointUrl,
         factory,
         fetch,
@@ -55,15 +59,15 @@ async function streamingClient() {
     });
 
     // query.select
-    const selectNoOptions: Readable = await fullOptions.query.select(query);
-    const selectFullOptions: Readable = await fullOptions.query.select(query, {
+    const selectNoOptions: Readable = fullOptions.query.select(query);
+    const selectFullOptions: Readable = fullOptions.query.select(query, {
         headers,
         operation: "postUrlencoded",
     });
 
     // query.construct
-    const constructNoOptions: Stream<TestQuad> & Readable = await fullOptions.query.construct(query);
-    const constructFullOptions: Stream<TestQuad> & Readable = await fullOptions.query.construct(query, {
+    const constructNoOptions: Stream<TestQuad> & Readable = fullOptions.query.construct(query);
+    const constructFullOptions: Stream<TestQuad> & Readable = fullOptions.query.construct(query, {
         headers,
         operation: "get",
     });
@@ -85,21 +89,36 @@ async function streamingClient() {
     const post: Promise<void> = fullOptions.store.post(stream);
 }
 
+// eslint-disable-next-line @definitelytyped/no-unnecessary-generics
+function accessingProperties<C extends StreamClient | ParsingClient | SimpleClient>(client: C) {
+    const {
+        endpointUrl,
+        storeUrl,
+        updateUrl,
+        user,
+        password,
+        headers,
+    } = client;
+}
+
 async function parsingClient() {
     // construct
-    const minimalOptions: ParsingClient = new ParsingClient({
+    const usingDefaultFactory: IParsingClient = new ParsingClient({
+        endpointUrl,
+    });
+    const minimalOptions: IParsingClient = new ParsingClient({
         endpointUrl,
         factory,
     });
-    const storeOnly: ParsingClient = new ParsingClient({
+    const storeOnly: IParsingClient = new ParsingClient({
         storeUrl: endpointUrl,
         factory,
     });
-    const updateOnly: ParsingClient = new ParsingClient({
+    const updateOnly: IParsingClient = new ParsingClient({
         updateUrl: endpointUrl,
         factory,
     });
-    const fullOptions: ParsingClient<TestQuad> = new ParsingClient({
+    const fullOptions: IParsingClient<DatasetCore<TestQuad>> = new ParsingClient({
         endpointUrl,
         factory,
         fetch,
@@ -170,6 +189,9 @@ async function simpleClient() {
         Store: StreamStore,
     });
 
+    // cast
+    const casted: ISimpleClient = client;
+
     // get
     const getNoOptions: Response = await client.get(query);
     const getFullOptions: Response = await client.get(query, {
@@ -218,4 +240,13 @@ async function simpleClient() {
         headers,
         operation: "get",
     });
+}
+
+function initFromInstance() {
+    const client = new StreamClient({
+        endpointUrl,
+    });
+    const cloneClient = new StreamClient(client);
+    const parsingClient = new ParsingClient(client);
+    const simpleClient = new SimpleClient(client);
 }

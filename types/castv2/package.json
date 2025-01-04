@@ -6,8 +6,8 @@
         "https://github.com/thibauts/node-castv2#readme"
     ],
     "dependencies": {
+        "@types/chromecast-caf-receiver": "*",
         "@types/events": "*",
-        "@types/mdns": "*",
         "@types/node": "*"
     },
     "devDependencies": {
@@ -15,8 +15,20 @@
     },
     "owners": [
         {
+            "name": "Thibaut Séguy",
+            "githubUsername": "thibauts"
+        },
+        {
             "name": "Joey Parrish",
             "githubUsername": "joeyparrish"
+        },
+        {
+            "name": "Julian Domingo",
+            "githubUsername": "juliandomingo"
+        },
+        {
+            "name": "Theodore Abshire",
+            "githubUsername": "theodab"
         }
     ]
 }

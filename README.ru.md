@@ -297,7 +297,7 @@ If a file is neither tested nor referenced in `index.d.ts`, add it to a file nam
 DT has the concept of "Definition Owners" which are people who want to maintain the quality of a particular module's types
 
 - Adding yourself to the list will cause you to be notified (via your GitHub username) whenever someone makes a pull request or issue about the package.
-- Your PR reviews will have a higher precedence of importance to [the bot](https://github.com/DefinitelyTyped/dt-mergebot) which maintains this repo.
+- Your PR reviews will have a higher precedence of importance to [the bot](https://github.com/microsoft/DefinitelyTyped-tools/tree/main/packages/mergebot) which maintains this repo.
 - The DT maintainers are putting trust in the definition owners to ensure a stable eco-system, please don't add yourself lightly.
 
 To Add yourself as a Definition Owner:
@@ -321,7 +321,7 @@ Once a week the Definition Owners are synced to the file [.github/CODEOWNERS](ht
 
 #### Я отправил PR. Когда он сольется?
 
-Это зависит, но большинство запросов на получение данных будут объединены в течение недели. PR, утвержденные автором, указанным в заголовке определения, обычно объединяются быстрее; PR для новых определений займет больше времени, так как они требуют большего количества проверок от сопровождающих. Каждый PR проверяется членом команды TypeScript или Definitely Typed перед объединением, поэтому будьте терпеливы, так как человеческий фактор может вызвать задержки. Посмотрите на [New Pull Request Status Board](https://github.com/DefinitelyTyped/DefinitelyTyped/projects/5) чтобы увидеть, как сопровождающие работают через открытые PR.
+Это зависит, но большинство запросов на получение данных будут объединены в течение недели. PR, утвержденные автором, указанным в заголовке определения, обычно объединяются быстрее; PR для новых определений займет больше времени, так как они требуют большего количества проверок от сопровождающих. Каждый PR проверяется членом команды TypeScript или Definitely Typed перед объединением, поэтому будьте терпеливы, так как человеческий фактор может вызвать задержки. Посмотрите на [Pull Request Status Board](https://github.com/orgs/DefinitelyTyped/projects/1) чтобы увидеть, как сопровождающие работают через открытые PR.
 
 #### Мой PR слит; когда будет обновлен пакет `@types` npm?
 

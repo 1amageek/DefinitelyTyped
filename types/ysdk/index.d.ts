@@ -17,11 +17,19 @@ export interface SDK {
 
     deviceInfo: DeviceInfo;
 
-    features: Partial<{
+    features: {
         LoadingAPI: {
             ready(): void;
         };
-    }>;
+        GameplayAPI: {
+            start(): void;
+            stop(): void;
+        };
+        GamesAPI: {
+            getAllGames(): Promise<{ games: Game[]; developerURL: string }>;
+            getGameByID(id: number): Promise<{ game?: Game; isAvailable: boolean }>;
+        };
+    };
 
     clipboard: {
         writeText(text: string): void;
@@ -68,7 +76,7 @@ export interface SDK {
         showRewardedVideo(opts?: {
             callbacks?: {
                 onOpen?: () => void;
-                onClose?: (wasShown: boolean) => void;
+                onClose?: () => void;
                 onError?: (error: string) => void;
                 onRewarded?: () => void;
             };
@@ -91,6 +99,9 @@ export interface SDK {
 
     dispatchEvent(eventName: SdkEventName, detail?: any): Promise<unknown>;
 
+    on(eventName: GameAPIEventName | SdkEventName, listener: () => void): () => void;
+
+    /** @deprecated */
     onEvent(eventName: SdkEventName, listener: () => void): () => void;
 
     shortcut: {
@@ -105,6 +116,16 @@ export interface SDK {
     getFlags(params?: GetFlagsParams): Promise<Record<string, string>>;
 
     isAvailableMethod(methodName: string): Promise<boolean>;
+
+    serverTime(): number;
+}
+
+interface Game {
+    appID: string;
+    title: string;
+    url: string;
+    coverURL: string;
+    iconURL: string;
 }
 
 interface ClientFeature {
@@ -147,11 +168,12 @@ export interface Player {
     getUniqueID(): string;
     getName(): string;
     getPhoto(size: "small" | "medium" | "large"): string;
+    getPayingStatus(): "paying" | "partially_paying" | "not_paying" | "unknown";
     getIDsPerGame(): Promise<Array<{ appID: number; userID: string }>>;
     getMode(): "lite" | "";
-    getData<T extends string>(keys?: Readonly<T[]>): Promise<Partial<Record<T, Serializable>>>;
+    getData<T extends string>(keys?: readonly T[]): Promise<Partial<Record<T, Serializable>>>;
     setData(data: any, flush?: boolean): Promise<void>;
-    getStats<T extends string>(keys?: Readonly<T[]>): Promise<Partial<Record<T, number>>>;
+    getStats<T extends string>(keys?: readonly T[]): Promise<Partial<Record<T, number>>>;
     setStats(stats: Record<string | number, number>): Promise<void>;
     incrementStats<T extends Record<string | number, number>>(
         stats: T,
@@ -257,6 +279,8 @@ export interface LeaderboardDescription {
 export type FeedbackError = "NO_AUTH" | "GAME_RATED" | "REVIEW_ALREADY_REQUESTED" | "UNKNOWN";
 
 export type StickyAdvError = "ADV_IS_NOT_CONNECTED" | "UNKNOWN";
+
+export type GameAPIEventName = "game_api_pause" | "game_api_resume";
 
 export type SdkEventName = "EXIT" | "HISTORY_BACK";
 

@@ -1190,7 +1190,28 @@ export namespace ping {
      * A health check for the API that won't return any account-specific information.
      * @return A {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/APIHealthStatus}
      */
-    function get(): APIHealthStatus | ErrorResponse;
+    function get(): Promise<APIHealthStatus | ErrorResponse>;
+}
+
+/**
+ * SearchMembersApi
+ */
+export namespace searchMembers {
+    interface SearchMembersSuccessResponse {
+        exact_matches: {
+            members: lists.MembersSuccessResponse[];
+            total_items: number;
+        };
+        full_search: {
+            members: lists.MembersSuccessResponse[];
+            total_items: number;
+        };
+        _links: Link[];
+    }
+
+    function search(
+        query: string,
+    ): Promise<SearchMembersSuccessResponse | ErrorResponse>;
 }
 
 /**

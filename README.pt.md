@@ -315,7 +315,7 @@ Se um arquivo não for testado nem referenciado no `index.d.ts`, adicione-o em u
 O DT tem o coneito de "Donos de definição", que são pessoas que querem manter a qualidade dos tipos de um módulo específico
 
 - Adicionar você mesmo à lista, vai garantir que você seja notificado (pelo seu usuário do GitHub) sempre que qualquer um fizer uma pull request ou um issue sobre o pacote.
-- Suas revisões da PR terão uma precedência de importância maior para [o bot](https://github.com/DefinitelyTyped/dt-mergebot) que mantém este repositório.
+- Suas revisões da PR terão uma precedência de importância maior para [o bot](https://github.com/microsoft/DefinitelyTyped-tools/tree/main/packages/mergebot) que mantém este repositório.
 - Os mantenedores do DT estão confiando nos donos da definição para garantir um ecossistema estável, por favor não se adicione apenas por adicionar.
 
 Para se adicionar como um Dono de definição:
@@ -345,7 +345,7 @@ Superficialmente:
 
 > PRs que alteram apenas os tipos de um módulo, e têm mudanças de testes correspondentes sofrerão merges muito mais rapidamente.
 
-PRs que forem aprovadas por um autor listado no cabeçalho da definição geralmente sofrem merge mais rápido; PRs para novas definições levarão mais tempo para serem aprovadas, uma vez que requerem mais revisão dos mantenedores. Cada PR é revisada por um membro do time do TypeScript ou Definitely Typed antes de sofrer merge, então por favor, seja paciente, pois fatores humanos podem causar alguns atrasos. Verifique o [Painel de Status de Novas Pull Requests](https://github.com/DefinitelyTyped/DefinitelyTyped/projects/5) para checar o progresso enquanto os mantenedores revisam as PRs abertas.
+PRs que forem aprovadas por um autor listado no cabeçalho da definição geralmente sofrem merge mais rápido; PRs para novas definições levarão mais tempo para serem aprovadas, uma vez que requerem mais revisão dos mantenedores. Cada PR é revisada por um membro do time do TypeScript ou Definitely Typed antes de sofrer merge, então por favor, seja paciente, pois fatores humanos podem causar alguns atrasos. Verifique o [Painel de Status de Pull Requests](https://github.com/orgs/DefinitelyTyped/projects/1) para checar o progresso enquanto os mantenedores revisam as PRs abertas.
 
 #### Minha PR já sofreu merge; Quando é que o pacote `@types` no npm será atualizado?
 

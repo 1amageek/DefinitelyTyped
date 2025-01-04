@@ -129,7 +129,7 @@ Facciamo uso di un bot per far sì che un gran numero di pull request su Definit
 
 Ecco qui un'immagine che mostra il ciclo vitale di una pull request su Definitely Typed.
 
-<img src="https://github.com/DefinitelyTyped/dt-mergebot/blob/master/docs/dt-mergebot-lifecycle.svg">
+<img src="https://github.com/microsoft/DefinitelyTyped-tools/tree/main/packages/mergebot/docs/dt-mergebot-lifecycle.svg">
 
 #### Clone parziale
 
@@ -362,7 +362,7 @@ Se un file non è nè testato nè riferito nell'`index.d.ts`, aggiungilo in un f
 DT ha il concetto di "Proprietari delle definizioni", che sono coloro i quali vogliono mantenere la qualità delle definizioni dei tipi di un certo modulo.
 
 - Aggiungerti da solo farà sì che tu venga notificato (tramite il tuo nome utente GitHub) ogni volta che qualcuno fa una pull request o un issue su quel package.
-- Le tue PR review avranno precedenza maggiore di quelle [dei bot](https://github.com/DefinitelyTyped/dt-mergebot) che mantengono questa repo.
+- Le tue PR review avranno precedenza maggiore di quelle [dei bot](https://github.com/microsoft/DefinitelyTyped-tools/tree/main/packages/mergebot) che mantengono questa repo.
 - I mantenitori di DT stanno ponendo la loro fiducia sui proprietari delle definizioni per mantenere un ecosistema stabile, quindi non aggiungerti senza sapere quello che fai.
 
 Per aggiungerti come pprietario delle definizioni:
@@ -392,7 +392,7 @@ Quindi dipende, anche se la maggior parte dei merge avvengono nell'arco di una s
 
 > Le pull request che cambiano solo i tipi di un modulo e che hanno i test corrispondenti vengono vengono accettati più velocemente
 
-Alle pull request che sono state approvate da un'autore presente nella lista dei proprietari vengono di solito fatti i merge più rapidamente; le pull request che introducono nuove definizioni ci mettono più tempo in quanto hanno bisogno di più controlli da parte dei mantenitori. Ogni pull request viene controllata da un membro di TypeScript o Definitely Type prima di ottenere un merge, quindi abbi pazienza in quanto fattori umani possono causare ritardi. Leggi la [New Pull Request Status Board](https://github.com/DefinitelyTyped/DefinitelyTyped/projects/5) per vedere a che punto sono i mantenitori nel controllare le pull request.
+Alle pull request che sono state approvate da un'autore presente nella lista dei proprietari vengono di solito fatti i merge più rapidamente; le pull request che introducono nuove definizioni ci mettono più tempo in quanto hanno bisogno di più controlli da parte dei mantenitori. Ogni pull request viene controllata da un membro di TypeScript o Definitely Type prima di ottenere un merge, quindi abbi pazienza in quanto fattori umani possono causare ritardi. Leggi la [Pull Request Status Board](https://github.com/orgs/DefinitelyTyped/projects/1) per vedere a che punto sono i mantenitori nel controllare le pull request.
 
 #### La mia pull request ha ottenuto un merge; quand'è che il package `@types` verra aggiornato su npm?
 

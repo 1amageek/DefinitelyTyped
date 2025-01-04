@@ -376,8 +376,8 @@ new ssh2.Server({
             && ctx.key.algo === pubKey.type
             && buffersEqual(ctx.key.data, pubKeySSH)
         ) {
-            if (ctx.signature && ctx.blob) {
-                if (pubKey.verify(ctx.blob, ctx.signature)) {
+            if (ctx.signature && ctx.blob && ctx.hashAlgo) {
+                if (pubKey.verify(ctx.blob, ctx.signature, ctx.hashAlgo)) {
                     ctx.accept();
                 } else {
                     ctx.reject();
@@ -393,9 +393,9 @@ new ssh2.Server({
     }).on("ready", () => {
         console.log("Client authenticated!");
 
-        client.on("session", (accept: any, reject: any) => {
+        client.on("session", (accept, reject) => {
             var session = accept();
-            session.once("exec", (accept: any, reject: any, info: any) => {
+            session.once("exec", (accept, reject, info) => {
                 console.log("Client wants to execute: " + inspect(info.command));
                 var stream = accept();
                 stream.stderr.write("Oh no, the dreaded errors!\n");

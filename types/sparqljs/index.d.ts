@@ -124,14 +124,14 @@ export type InsertDeleteOperation =
     }
     | {
         updateType: "insertdelete";
-        graph?: GraphOrDefault;
-        insert?: Quads[];
-        delete?: Quads[];
+        graph?: IriTerm;
+        insert: Quads[];
+        delete: Quads[];
         using?: {
             default: IriTerm[];
             named: IriTerm[];
         };
-        where?: Pattern[];
+        where: Pattern[];
     }
     | {
         updateType: "deletewhere";
@@ -284,10 +284,22 @@ export interface Triple {
     object: Term;
 }
 
-export interface PropertyPath {
+export type PropertyPath = NegatedPropertySet | {
     type: "path";
-    pathType: "|" | "/" | "^" | "+" | "*" | "!" | "?";
+    pathType: "|" | "/" | "^" | "+" | "*" | "?";
     items: Array<IriTerm | PropertyPath>;
+};
+
+export interface NegatedPropertySet {
+    type: "path";
+    pathType: "!";
+    items: Array<
+        IriTerm | {
+            type: "path";
+            pathType: "^";
+            items: [IriTerm];
+        }
+    >;
 }
 
 export type Expression =

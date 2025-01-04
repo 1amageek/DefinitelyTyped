@@ -934,11 +934,11 @@
         editable: false,
     });
 
-    instance.focus(); // $ExpectType
+    instance.focus(); // $ExpectType void
 
-    instance.focus(1); // $ExpectType
+    instance.focus(1); // $ExpectType void
 
-    instance.focusFirstFocusable(); // $ExpectType
+    instance.focusFirstFocusable(); // $ExpectType void
 
     instance.isOutlined(); // $ExpectType boolean
 
@@ -1322,6 +1322,68 @@
 
     // @ts-expect-error
     OO.ui.ComboBoxInputWidget.prototype.$field;
+}
+// #endregion
+
+// #region OO.ui.CopyTextLayout
+{
+    // $ExpectType ActionFieldLayout<TextInputWidget>
+    new OO.ui.CopyTextLayout.super(new OO.ui.TextInputWidget(), new OO.ui.ButtonWidget());
+
+    const instance = new OO.ui.CopyTextLayout({
+        copyText: "Text to copy",
+        textInput: {
+            placeholder: "Placeholder",
+        },
+        button: {
+            flags: ["progressive"],
+        },
+    });
+
+    // $ExpectType TextInputWidget
+    instance.getField();
+
+    // $ExpectType void
+    instance.onButtonClick();
+
+    // $ExpectType void
+    instance.onInputFocus();
+
+    // $ExpectType void
+    instance.selectText();
+
+    instance.on("copy", success => {
+        success; // $ExpectType boolean
+    });
+
+    const instanceMultilineFalse = new OO.ui.CopyTextLayout({
+        copyText: "Text to copy",
+        textInput: {
+            placeholder: "Placeholder",
+        },
+        button: {
+            flags: ["progressive"],
+        },
+        multiline: false,
+    });
+
+    // $ExpectType TextInputWidget
+    instanceMultilineFalse.getField();
+
+    const instanceMultilineTrue = new OO.ui.CopyTextLayout({
+        copyText: "Text to copy",
+        textInput: {
+            placeholder: "Placeholder",
+            rows: 3,
+        },
+        button: {
+            flags: ["progressive"],
+        },
+        multiline: true,
+    });
+
+    // $ExpectType MultilineTextInputWidget
+    instanceMultilineTrue.getField();
 }
 // #endregion
 
@@ -2400,6 +2462,9 @@
     instance.adjustSize(true);
 
     instance.isAutosizing(); // $ExpectType boolean
+
+    // $ExpectType NonNullRange
+    instance.getRange();
 
     instance.on("resize", () => {});
 }
